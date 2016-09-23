@@ -1,0 +1,13 @@
+button:not(#new-game) {
+	background-color: #FFFFFF;
+	border-color: #000000;
+	width: 100px;
+	height: 100px;
+	font-size: 40pt;
+	float: left;
+}
+
+.button-grid {
+	width: 300px;
+	height: 300px;
+}
