@@ -12,6 +12,7 @@ function newGame() {
 	clearButtons();
 }
 
+
 function clearButtons() {
 	for(var i = 0; i < 3; i++) {
 		for(j = 0; j < 3; j++) {
@@ -23,7 +24,7 @@ function clearButtons() {
 }
 
 function createEmptyBoard() {
-	outer = new Array(3);
+	var outer = new Array(3);
 	for(var i = 0; i < outer.length; i++) {
 		outer[i] = new Array(3);
 	}
@@ -73,10 +74,30 @@ function makeMove(buttonId) {
 			isCrossesTurn = !isCrossesTurn;
 			
 			checkForWin();
+			console.log(isCrossesTurn);
+			if(!isCrossesTurn) {
+				aiMove();
+			}
 			
 		}
 	}
 }
+
+function aiMove() {
+	if(!hasWon) {
+		var row = Math.floor(Math.random() * 3);
+		var col = Math.floor(Math.random() * 3);
+		while(board[row][col] == "X" || board[row][col] == "O") {
+			row = Math.floor(Math.random() * 3);
+			col = Math.floor(Math.random() * 3);
+		}
+		
+		var buttonId = getButtonId(row, col);
+		makeMove(buttonId);
+	}
+}
+
+
 
 function addMoveToArray(row, col, marker) {
 	
