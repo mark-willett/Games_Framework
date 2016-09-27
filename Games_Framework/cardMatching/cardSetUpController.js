@@ -34,10 +34,10 @@ SetUp.prototype.updateUI = function (){
 		
 		currentButtonImgID = indexToImageName(i);
 		currentButtonButID = indexToButtonName(i);
-		console.log("index : " + i + " bg : " + currentButton.background + " imageID : " + currentButtonImgID);
-		document.getElementById(currentButtonImgID).src=currentButton.background;
-		console.log("index : " + i + " label : " + currentButton.label);
-		document.getElementById(currentButtonButID).innerHTML=currentButton.label;
+		
+		newInnerHTML = '<img id=' +currentButtonImgID+ ' src='+currentButton.background+' width="64" height="96">' + currentButton.label;
+		
+		document.getElementById(currentButtonButID).innerHTML=newInnerHTML;
 		
 	}
 }
