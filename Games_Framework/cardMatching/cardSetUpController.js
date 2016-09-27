@@ -17,8 +17,6 @@ function SetUp(){
 	}
 	
 	this.newGameListener = new NewGameButtonController(this, this.playingSurface);
-	
-	this.updateUI();
 }
 
 SetUp.prototype.updateUI = function (){
@@ -36,8 +34,11 @@ SetUp.prototype.updateUI = function (){
 		
 		currentButtonImgID = indexToImageName(i);
 		currentButtonButID = indexToButtonName(i);
-		document.getElementById(currentButtonButID).value=currentButton.label;
+		console.log("index : " + i + " bg : " + currentButton.background + " imageID : " + currentButtonImgID);
 		document.getElementById(currentButtonImgID).src=currentButton.background;
+		console.log("index : " + i + " label : " + currentButton.label);
+		document.getElementById(currentButtonButID).innerHTML=currentButton.label;
+		
 	}
 }
 
