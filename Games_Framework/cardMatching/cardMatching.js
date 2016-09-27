@@ -15,7 +15,7 @@ Card.prototype.matchesCard = function(otherCard){
 }
 
 Card.prototype.faceUp = function(){
-	if(matching || selected){
+	if(this.matched || this.selected){
 		return true;
 	} else {
 		return false;
@@ -85,18 +85,26 @@ function PlayingSurface(cardSlots) {
 
 PlayingSurface.prototype.setUpPlayingCardTable = function(){
 	this.deck = new PlayingCardDeck();
-	this.deck.placeCards();
+	this.placeCards();
 }
 
 PlayingSurface.prototype.placeCards = function(){
 	var cardsReq = this.cardSlots / 2;
 	
 	var drawnCard;
+	
+	var unmixedCards = [];
 	for(var i = 0; i < cardsReq; i++){
 		drawnCard = this.deck.drawRandomCard();
 		var cardCopy = new PlayingCard(drawnCard.suit, drawnCard.rank);
+		unmixedCards.push(drawnCard);
+		unmixedCards.push(cardCopy);
+	}
+	
+	for(var i = 0; i < this.cardSlots; i++){
+		var index = Math.floor(Math.random() * (unmixedCards.length - 1));
+		var drawnCard = unmixedCards.splice(index, 1)[0];
 		this.cardsOnTable.push(drawnCard);
-		this.cardsOnTable.push(cardCopy);
 	}
 }
 
@@ -110,11 +118,11 @@ PlayingSurface.prototype.newGame = function(){
 PlayingSurface.prototype.selectCard = function(card) {
 	var self = this;
 	
-	if(self.numberOfSelectedCards == 0){
+	console.log("label : " + card.label);
+	if(self.numberOfCardsSelected == 0){
 		card.selected = true;
-		numberOfSelectedCards++;		
+		self.numberOfCardsSelected = 1;		
 	} else if (self.numberOfCardsSelected == 1){
-		card.selected = true;
 		
 		self.cardsOnTable.forEach(function (cardValue, cardIndex, cardArray){
 			if(cardValue.selected && cardValue.label == card.label){
@@ -122,6 +130,7 @@ PlayingSurface.prototype.selectCard = function(card) {
 				card.matched = true;
 			}
 		});
+		card.selected = true;
 		
 		self.numberOfCardsSelected = 2;
 	} else if (self.numberOfCardsSelected == 2){
@@ -129,15 +138,9 @@ PlayingSurface.prototype.selectCard = function(card) {
 			cardValue.selected = false;
 		});
 		card.selected = true;
-		numberOfSelectedCards = 1;
+		self.numberOfCardsSelected = 1;
 	} else {
 		console.log("Too many cards selected");
+		debugger
 	}
 }
-
-function main(){
-	var playingSurface = new PlayingSurface();
-	playingSurface.setUpPlayingCardTable();
-}
-
-

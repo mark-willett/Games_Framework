@@ -1,0 +1,18 @@
+.card-grid {
+    width: 300px;
+    background: gray;
+    overflow-y: auto;
+    background: DarkGreen;
+}
+
+.card-grid > button {
+    width: 70px;
+    height: 102px;
+    float: left;
+    background: lightgray;   
+    margin: 15px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
