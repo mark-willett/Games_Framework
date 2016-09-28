@@ -35,11 +35,13 @@ SetUp.prototype.updateUI = function (){
 		currentButtonImgID = indexToImageName(i);
 		currentButtonButID = indexToButtonName(i);
 		
-		newInnerHTML = '<img id=' +currentButtonImgID+ ' src='+currentButton.background+' width="64" height="96">' + currentButton.label;
+		var newInnerHTML = '<img id=' +currentButtonImgID+ ' src='+currentButton.background+' width="64" height="96"><p>' + currentButton.label + '</p>';
 		
 		document.getElementById(currentButtonButID).innerHTML=newInnerHTML;
 		
 	}
+	
+	document.getElementById('turnNumber').innerHTML = 'Turns: ' + this.playingSurface.numberOfTurns;
 }
 
 SetUp.prototype.HTMLButtonClicked = function (buttonLabel){

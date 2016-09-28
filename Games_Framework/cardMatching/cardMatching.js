@@ -62,11 +62,11 @@ function PlayingCardDeck(){
 PlayingCardDeck.prototype.reloadDeck = function(){
 	this.cards = [];
 	var self = this;
-	
-	var suits = ['\u2660','\u2665','\u2666','\u2663'];
+
+	var suits = ['\u2660','<font color = "red">\u2665<font>','<font color = "red">\u2666<font>','\u2663'];
 	//var suits =["HEARTS", "CLUBS", "SPADES", "DIAMONDS"];
 	var ranks = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
-	
+
 	var card;
 	suits.forEach(function (suitValue, suitIndex, suitArray){
 		ranks.forEach(function (rankValue, rankIndex, rankArray){
@@ -82,6 +82,7 @@ function PlayingSurface(cardSlots) {
 	this.cardsOnTable = [];
 	this.numberOfCardsSelected = 0;
 	this.deck;
+	this.numberOfTurns = 0;
 }
 
 PlayingSurface.prototype.setUpPlayingCardTable = function(){
@@ -91,9 +92,9 @@ PlayingSurface.prototype.setUpPlayingCardTable = function(){
 
 PlayingSurface.prototype.placeCards = function(){
 	var cardsReq = this.cardSlots / 2;
-	
+
 	var drawnCard;
-	
+
 	var unmixedCards = [];
 	for(var i = 0; i < cardsReq; i++){
 		drawnCard = this.deck.drawRandomCard();
@@ -101,7 +102,7 @@ PlayingSurface.prototype.placeCards = function(){
 		unmixedCards.push(drawnCard);
 		unmixedCards.push(cardCopy);
 	}
-	
+
 	for(var i = 0; i < this.cardSlots; i++){
 		var index = Math.floor(Math.random() * (unmixedCards.length - 1));
 		var drawnCard = unmixedCards.splice(index, 1)[0];
@@ -113,34 +114,45 @@ PlayingSurface.prototype.newGame = function(){
 	this.cardsOnTable = [];
 	this.numberOfCardsSelected = 0;
 	this.deck.reloadDeck();
-	this.placeCards();
+	this.placeCards();	
+	this.numberOfTurns = 0;
 }
 
 PlayingSurface.prototype.selectCard = function(card) {
 	var self = this;
-	
+
 	if(self.numberOfCardsSelected == 0){
 		card.selected = true;
 		self.numberOfCardsSelected = 1;		
-	} else if (self.numberOfCardsSelected == 1){
-		
-		self.cardsOnTable.forEach(function (cardValue, cardIndex, cardArray){
-			if(cardValue.selected && cardValue.label == card.label){
-				cardValue.matched = true;
-				card.matched = true;
-			}
-		});
-		card.selected = true;
-		
-		self.numberOfCardsSelected = 2;
+	} else if (self.numberOfCardsSelected == 1){	
+		if(card.selected){
+			self.numberOfCardsSelected = 0;
+			card.selected = false
+		} else {
+			self.cardsOnTable.forEach(function (cardValue, cardIndex, cardArray){
+				if(cardValue.selected && cardValue.label == card.label){
+					cardValue.matched = true;
+					card.matched = true;
+				}
+			});
+			card.selected = true;
+
+			self.numberOfCardsSelected = 2;
+		}
 	} else if (self.numberOfCardsSelected == 2){
-		self.cardsOnTable.forEach(function (cardValue, cardIndex, cardArray){
-			cardValue.selected = false;
-		});
-		card.selected = true;
-		self.numberOfCardsSelected = 1;
+		if(card.selected){
+			self.numberOfCardsSelected = 1;
+			card.selected = false
+		} else {
+			self.cardsOnTable.forEach(function (cardValue, cardIndex, cardArray){
+				cardValue.selected = false;
+			});
+			card.selected = true;
+			self.numberOfCardsSelected = 1;
+		}
 	} else {
 		console.log("Too many cards selected");
 		debugger
 	}
+	this.numberOfTurns++;
 }

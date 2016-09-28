@@ -8,6 +8,12 @@ function ButtonController(controller, model, index) {
 	this.label = "";
 }
 
+ButtonController.prototype.resetButton = function(){
+	this.card = this.model.cardsOnTable[this.index];
+	this.background = this.controller.backG;
+	this.label = "";
+}
+
 ButtonController.prototype.buttonClicked = function(){
 	this.model.selectCard(this.card);
 	this.controller.updateUI();

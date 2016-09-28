@@ -2,8 +2,6 @@
 <link rel="stylesheet" type="text/css" href="cardMatching.css">
 <title>Card Matching</title>
 
-<h1>Card Matching</h1>
-
 <body>
 
 	<script src="cardMatching.js"></script>
@@ -70,6 +68,13 @@
 			<img id="img12" src="/Users/Mark/git/Games_Framework/Games_Framework/cardMatching/gear-backs-transparent.png"
 				width="64" height="96">
 		</button>
+		
+		<div class = "newGameDiv">
+		<button id="newGame" onClick="setUp.HTMLNewGameClicked()">
+		New Game
+		</button>
+		<p id="turnNumber"> Turns: 0<p>
+		</div>
 	</div>
 
 	<script> var setUp = new SetUp(); </script>
