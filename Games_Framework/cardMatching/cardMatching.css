@@ -10,6 +10,7 @@
     height:92px;
     float: left;
     background-image: url(C:\\Users\\Dom\\git\\Games_Framework\\Games_Framework\\cardMatching\\gear-backs-transparent.png);  
+    background-position: center;
     margin: 15px;
     padding-bottom: 0px;
     padding-top: 0px;
@@ -22,7 +23,7 @@
 .card-grid > button[class="faceUp"] {
 	background: url(C:\\Users\\Dom\\git\\Games_Framework\\Games_Framework\\cardMatching\\card-fronts-transparent.png);
 	font-size: 22pt;
-	color: red;
+	
 }
 
 .card-grid > button:active {
