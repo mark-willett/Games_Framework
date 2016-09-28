@@ -7,8 +7,8 @@ function SetUp(){
 	this.playingSurface = new PlayingSurface(this.noOfButtons);
 	this.playingSurface.setUpPlayingCardTable();
 	
-	this.backG = '/Users/Mark/git/Games_Framework/Games_Framework/cardMatching/gear-backs-transparent.png';
-	this.foreG = '/Users/Mark/git/Games_Framework/Games_Framework/cardMatching/card-fronts-transparent.png';
+	//this.backG = 'C:\\Users\\Dom\\git\\Games_Framework\\Games_Framework\\cardMatching\\gear-backs-transparent.png';
+	//this.foreG = 'C:\\Users\\Dom\\git\\Games_Framework\\Games_Framework\\cardMatching\\card-fronts-transparent.png';
 	
 	this.buttonListeners = [];
 	
@@ -17,6 +17,7 @@ function SetUp(){
 	}
 	
 	this.newGameListener = new NewGameButtonController(this, this.playingSurface);
+	this.updateUI();
 }
 
 SetUp.prototype.updateUI = function (){
@@ -25,19 +26,23 @@ SetUp.prototype.updateUI = function (){
 	for(var i = 0; i < this.noOfButtons; i++){
 		currentButton = this.buttonListeners[i];
 		if(currentButton.card.faceUp()){
-			currentButton.background = this.foreG;
+			//currentButton.background = this.foreG;
+			currentButton.background = "faceUp";
 			currentButton.label = currentButton.card.label;
 		} else {
-			currentButton.background = this.backG;
+			//currentButton.background = this.backG;
+			currentButton.background = "faceDown";
 			currentButton.label = "";
 		}
 		
 		currentButtonImgID = indexToImageName(i);
 		currentButtonButID = indexToButtonName(i);
 		
-		var newInnerHTML = '<img id=' +currentButtonImgID+ ' src='+currentButton.background+' width="64" height="96"><p>' + currentButton.label + '</p>';
+		document.getElementById(currentButtonButID).className = currentButton.background;
+		document.getElementById(currentButtonButID).textContent = currentButton.label;
+		//var newInnerHTML = '<img id=' +currentButtonImgID+ ' src='+currentButton.background+' width="64" height="96"><p>' + currentButton.label + '</p>';
 		
-		document.getElementById(currentButtonButID).innerHTML=newInnerHTML;
+		//document.getElementById(currentButtonButID).innerHTML=newInnerHTML;
 		
 	}
 	
