@@ -6,8 +6,8 @@
 }
 
 .card-grid > button {
-    width: 70px;
-    height: 102px;
+    width: 60px;
+    height:92px;
     float: left;
     background: lightgray;   
     margin: 15px;
@@ -15,12 +15,17 @@
     padding-top: 0px;
     padding-left: 0px;
     padding-right: 0px;
+    border-radius: 5px;
 }
 
+.card-grid > button:active {
+	position:relative;
+	top:1px;
+}
 .card-grid > button > img {
 	position : relative;
-	left: 0;
-  	top: 0;
+	left: -3;
+  	top: -3;
 }
 
 .card-grid > button > p {
