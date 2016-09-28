@@ -1,5 +1,5 @@
 .card-grid {
-    width: 273px;
+    width: 300px;
     background: gray;
     overflow-y: auto;
     background: DarkGreen;
@@ -9,13 +9,19 @@
     width: 60px;
     height:92px;
     float: left;
-    background: lightgray;   
+    background-image: url(C:\\Users\\Dom\\git\\Games_Framework\\Games_Framework\\cardMatching\\gear-backs-transparent.png);  
     margin: 15px;
     padding-bottom: 0px;
     padding-top: 0px;
     padding-left: 0px;
     padding-right: 0px;
     border-radius: 5px;
+}
+
+.card-grid > button[class="faceUp"] {
+	background: url(C:\\Users\\Dom\\git\\Games_Framework\\Games_Framework\\cardMatching\\card-fronts-transparent.png);
+	font-size: 22pt;
+	color: red;
 }
 
 .card-grid > button:active {
