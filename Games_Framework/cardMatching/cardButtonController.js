@@ -4,7 +4,8 @@ function ButtonController(controller, model, index) {
 	this.model = model;
 	this.index = index;
 	this.card = this.model.cardsOnTable[this.index]
-	this.background = controller.backG;
+	//this.background = controller.backG;
+	this.background = "faceDown";
 	this.label = "";
 }
 
