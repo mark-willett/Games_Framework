@@ -36,19 +36,11 @@ p[class="buttonText"]{
   font-style : bold;
 }
 
-p[suit="hearts"]{
+p[suit="hearts"], p[suit="diamonds"]{
   color : red;
 }
 
-p[suit="diamonds"]{
-  color : red;
-}
-
-p[suit="spades"]{
-  color : black;
-}
-
-p[suit="clubs"]{
+p[suit="spades"], p[suit="clubs"]{
   color : black;
 }
 
