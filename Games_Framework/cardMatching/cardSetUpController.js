@@ -28,9 +28,7 @@ SetUp.prototype.updateUI = function (){
 		currentButtonButID = indexToButtonName(i);
 		currentButtonSuitID = indexToSuitName(i);
 		currentButtonRankID = indexToRankName(i);
-		console.log("passing : " + currentButton.card.suit);
 		suitString = unicodeToSuit(currentButton.card.suit);
-		console.log("submitting : " + suitString);
 		
 		if(currentButton.card.faceUp()){
 			document.getElementById(currentButtonButID).setAttribute('class', 'faceUp');
