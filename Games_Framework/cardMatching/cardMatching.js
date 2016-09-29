@@ -70,7 +70,7 @@ PlayingCardDeck.prototype.reloadDeck = function(){
 	var card;
 	suits.forEach(function (suitValue, suitIndex, suitArray){
 		ranks.forEach(function (rankValue, rankIndex, rankArray){
-			card = new PlayingCard(rankValue, suitValue);
+			card = new PlayingCard(suitValue, rankValue);
 			self.addCard(card);
 		});
 	});

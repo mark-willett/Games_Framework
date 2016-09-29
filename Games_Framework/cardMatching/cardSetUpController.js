@@ -1,21 +1,21 @@
 //handles initial creation of model and linking of buttons to actions
 
 function SetUp(){
-	
+
 	this.noOfButtons = 12;
-	
+
 	this.playingSurface = new PlayingSurface(this.noOfButtons);
 	this.playingSurface.setUpPlayingCardTable();
-	
+
 	//this.backG = 'C:\\Users\\Dom\\git\\Games_Framework\\Games_Framework\\cardMatching\\gear-backs-transparent.png';
 	//this.foreG = 'C:\\Users\\Dom\\git\\Games_Framework\\Games_Framework\\cardMatching\\card-fronts-transparent.png';
-	
+
 	this.buttonListeners = [];
-	
+
 	for(var i = 0; i < this.noOfButtons; i++){
 		this.buttonListeners.push(new ButtonController(this, this.playingSurface, i));
 	}
-	
+
 	this.newGameListener = new NewGameButtonController(this, this.playingSurface);
 	this.updateUI();
 }
@@ -25,33 +25,45 @@ SetUp.prototype.updateUI = function (){
 	var currentButtonImgID;
 	for(var i = 0; i < this.noOfButtons; i++){
 		currentButton = this.buttonListeners[i];
-		if(currentButton.card.faceUp()){
-			//currentButton.background = this.foreG;
-			currentButton.background = "faceUp";
-			currentButton.label = currentButton.card.label;
-		} else {
-			//currentButton.background = this.backG;
-			currentButton.background = "faceDown";
-			currentButton.label = "";
-		}
-		
-		currentButtonImgID = indexToImageName(i);
 		currentButtonButID = indexToButtonName(i);
+		currentButtonSuitID = indexToSuitName(i);
+		currentButtonRankID = indexToRankName(i);
+		console.log("passing : " + currentButton.card.suit);
+		suitString = unicodeToSuit(currentButton.card.suit);
+		console.log("submitting : " + suitString);
 		
-		document.getElementById(currentButtonButID).className = currentButton.background;
-		document.getElementById(currentButtonButID).textContent = currentButton.label;
-		//var newInnerHTML = '<img id=' +currentButtonImgID+ ' src='+currentButton.background+' width="64" height="96"><p>' + currentButton.label + '</p>';
-		
-		//document.getElementById(currentButtonButID).innerHTML=newInnerHTML;
-		
+		if(currentButton.card.faceUp()){
+			document.getElementById(currentButtonButID).setAttribute('class', 'faceUp');
+			document.getElementById(currentButtonRankID).textContent = currentButton.card.rank;
+			document.getElementById(currentButtonSuitID).textContent = currentButton.card.suit;
+			document.getElementById(currentButtonSuitID).setAttribute('suit', suitString);
+		} else {
+			document.getElementById(currentButtonButID).setAttribute('class', 'faceDown');
+			document.getElementById(currentButtonRankID).textContent = "";
+			document.getElementById(currentButtonSuitID).textContent = "";
+		}
 	}
-	
+
 	document.getElementById('turnNumber').innerHTML = 'Turns: ' + this.playingSurface.numberOfTurns;
 }
 
 SetUp.prototype.HTMLButtonClicked = function (buttonLabel){
 	var buttonIndex = indexFinder(buttonLabel);
 	this.buttonListeners[buttonIndex].buttonClicked();
+}
+
+function unicodeToSuit(unicode){
+	
+	switch(unicode) {
+	case "\u2660":
+		return "spades";
+	case "\u2665":
+		return "hearts";
+	case "\u2666":
+		return "diamonds";
+	case "\u2663":
+		return "clubs";
+	}
 }
 
 function indexFinder(buttonLabel){
@@ -83,61 +95,90 @@ function indexFinder(buttonLabel){
 	}
 }
 
-function indexToImageName(index){
+function indexToButtonName(index){
 	switch(index) {
-		case 0:
-			return "img1";
-		case 1:
-			return "img2";
-		case 2:
-			return "img3";
-		case 3:
-			return "img4";
-		case 4:
-			return "img5";
-		case 5:
-			return "img6";
-		case 6:
-			return "img7";
-		case 7:
-			return "img8";
-		case 8:
-			return "img9";
-		case 9:
-			return "img10";
-		case 10:
-			return "img11";
-		case 11:
-			return "img12";
+	case 0:
+		return "but1";
+	case 1:
+		return "but2";
+	case 2:
+		return "but3";
+	case 3:
+		return "but4";
+	case 4:
+		return "but5";
+	case 5:
+		return "but6";
+	case 6:
+		return "but7";
+	case 7:
+		return "but8";
+	case 8:
+		return "but9";
+	case 9:
+		return "but10";
+	case 10:
+		return "but11";
+	case 11:
+		return "but12";
 	}
 }
 
-function indexToButtonName(index){
+function indexToRankName(index){
 	switch(index) {
-		case 0:
-			return "but1";
-		case 1:
-			return "but2";
-		case 2:
-			return "but3";
-		case 3:
-			return "but4";
-		case 4:
-			return "but5";
-		case 5:
-			return "but6";
-		case 6:
-			return "but7";
-		case 7:
-			return "but8";
-		case 8:
-			return "but9";
-		case 9:
-			return "but10";
-		case 10:
-			return "but11";
-		case 11:
-			return "but12";
+	case 0:
+		return "rank1";
+	case 1:
+		return "rank2";
+	case 2:
+		return "rank3";
+	case 3:
+		return "rank4";
+	case 4:
+		return "rank5";
+	case 5:
+		return "rank6";
+	case 6:
+		return "rank7";
+	case 7:
+		return "rank8";
+	case 8:
+		return "rank9";
+	case 9:
+		return "rank10";
+	case 10:
+		return "rank11";
+	case 11:
+		return "rank12";
+	}
+}
+
+function indexToSuitName(index){
+	switch(index) {
+	case 0:
+		return "suit1";
+	case 1:
+		return "suit2";
+	case 2:
+		return "suit3";
+	case 3:
+		return "suit4";
+	case 4:
+		return "suit5";
+	case 5:
+		return "suit6";
+	case 6:
+		return "suit7";
+	case 7:
+		return "suit8";
+	case 8:
+		return "suit9";
+	case 9:
+		return "suit10";
+	case 10:
+		return "suit11";
+	case 11:
+		return "suit12";
 	}
 }
 

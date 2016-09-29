@@ -1,48 +1,55 @@
-.card-grid {
-    width: 300px;
-    background: gray;
-    overflow-y: auto;
-    background: DarkGreen;
+.buttonGrid {
+  width : 283px;
+  height: 570px;
+  background-color : DarkGreen;
 }
 
-.card-grid > button {
-    width: 60px;
-    height:92px;
-    float: left;
-    background-image: url(C:\\Users\\Dom\\git\\Games_Framework\\Games_Framework\\cardMatching\\gear-backs-transparent.png);  
-    background-position: center;
-    margin: 15px;
-    padding-bottom: 0px;
-    padding-top: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    
-    border-radius: 5px;
+div[class = "buttonGrid"] > button{
+  background-color : #4CAF50;
+  width : 64px;
+  height : 96px;
+  background : none;
+  border : none;
+  font-family: "Helvetica Neue",Arial,sans-serif;
+	font-size:22px;
+  color: #3c3e45;
+  background-size: 100%;
+  margin : 15px;
+  float : left;
 }
 
-.card-grid > button[class="faceUp"] {
-	background: url(C:\\Users\\Dom\\git\\Games_Framework\\Games_Framework\\cardMatching\\card-fronts-transparent.png);
-	font-size: 22pt;
-	
+div[class = "buttonGrid"] > button[class="faceUp"]{
+  background-image : url("http://imgur.com/hNkK73R.png");
 }
 
-.card-grid > button:active {
-	position:relative;
-	top:1px;
-}
-.card-grid > button > img {
-	position : relative;
-	left: -3;
-  	top: -3;
+div[class = "buttonGrid"] > button[class="faceDown"]{
+  background-image : url("http://imgur.com/I66bJXX.png");
 }
 
-.card-grid > button > p {
-	font-family: "Helvetica Neue",Arial,sans-serif;
-	position : relative;
-	color: black;
-	font-size: 24px;
-	font-weight: bold;
-	top: -85;
+div[class = "buttonGrid"] > button:active{
+  position:relative;
+  top:-4px;
+}
+
+p[class="buttonText"]{
+  display : inline;
+  font-style : bold;
+}
+
+p[suit="hearts"]{
+  color : red;
+}
+
+p[suit="diamonds"]{
+  color : red;
+}
+
+p[suit="spades"]{
+  color : black;
+}
+
+p[suit="clubs"]{
+  color : black;
 }
 
 .newGameDiv{
